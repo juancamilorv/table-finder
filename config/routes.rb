@@ -9,4 +9,5 @@ Rails.application.routes.draw do
     resources :reservations, only: %i[new create]
   end
 
+  resources :reservations, only: %i[index edit update destroy]
 end
