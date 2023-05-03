@@ -1,0 +1,16 @@
+<h1 class="text-center my-5">Your Reservations</h1>
+
+<%  @reservations.each do |reservation| %>
+  <div class="d-flex justify-content-between">
+    <%= reservation.date %>
+    <div>
+
+      <%= link_to "Edit", edit_reservation_path(reservation), class: "btn btn-success" %>
+
+
+
+      <%= link_to "Delete", reservation_path(reservation), data: {turbo_method: :delete}, class:"btn btn-danger"%>
+    </div>
+  </div>
+  <hr>
+<% end %>

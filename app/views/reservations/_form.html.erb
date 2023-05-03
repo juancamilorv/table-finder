@@ -1,0 +1,8 @@
+<%= simple_form_for [@restaurant, @reservation] do |f| %>
+
+
+  <%= f.input :date, as: :date, label: "Date", html5: true %>
+  <%= f.button :submit, class: "btn btn-primary" %>
+
+
+<% end %>
