@@ -1,0 +1,45 @@
+<h1 class="text-center my-5">Your restaurants</h1>
+
+  <ul class="nav nav-tabs">
+
+    <% @restaurants.each do |restaurant| %>
+
+      <li class="nav-item" role="presentation">
+        <a class="ms-3" data-bs-toggle="tab"
+           href="#<%= restaurant.id %>">
+
+                <%= restaurant.name %>
+        </a>
+      </li>
+
+    <% end %>
+
+  </ul>
+
+
+<div class="tab-content">
+
+      <% @restaurants.each do |restaurant| %>
+
+
+        <div class="tab-pane" id="<%= restaurant.id %>">
+
+
+            <%= restaurant.description %>
+            <%= link_to 'Edit', edit_restaurant_path(restaurant) %>
+
+            <%= link_to "Delete", restaurant_path(restaurant), data: {turbo_method: :delete}, class:"btn btn-danger"%>
+
+        </div>
+
+      <% end %>
+
+
+</div>
+
+
+
+
+<div class="text-end mt-5">
+<%= link_to 'Add restaurant', new_restaurant_path, class: "btn btn-primary"%>
+</div>
