@@ -13,13 +13,16 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.new(restaurant_params)
     @restaurant.user = current_user
     @restaurant.save
-    redirect_to restaurants_path
+    redirect_to restaurants_path, notice: "Restaurant was successfully created!"
+
   end
 
   def edit
   end
 
   def update
+    @restaurant.update(restaurant_params)
+    redirect_to restaurants_path, notice: 'Restaurant was successfully updated!'
   end
 
   def destroy

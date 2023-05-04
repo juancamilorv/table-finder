@@ -6,13 +6,28 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new
   end
 
+
+
+
   def create
     @reservation = Reservation.new(reservation_params)
     @reservation.restaurant = @restaurant
     @reservation.user = current_user
-    @reservation.save
-    redirect_to root_path
+
+    consideration1 = @restaurant.reservations.where(date: @reservation.date).count < 3 # Change limit to 15
+    consideration2 = Reservation.where(date: @reservation.date).count < 5 # Change limit to 20
+
+    if consideration1 && consideration2
+      @reservation.save
+      redirect_to root_path, notice: "Reservation made!"
+    else
+      redirect_to new_restaurant_reservation_path(@restaurant), notice: "Sorry! There are no more tables available."
+    end
   end
+
+
+
+
 
   def edit
     # @restaurant = @reservation.restaurant
