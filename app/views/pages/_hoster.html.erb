@@ -4,6 +4,10 @@
   <%  @reservations.each do |reservation| %>
     <div class="d-flex justify-content-between">
       <%= reservation.date %>
+       <strong>
+    <%= Restaurant.find(reservation.restaurant_id).name %>
+ </strong>
+
       <div>
 
         <%= link_to "Edit", edit_reservation_path(reservation), class: "btn btn-success" %>
