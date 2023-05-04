@@ -17,18 +17,26 @@
   </ul>
 
 
-<div class="tab-content">
+<div class="tab-content" style="height: 250px;">
 
       <% @restaurants.each do |restaurant| %>
 
 
-        <div class="tab-pane" id="<%= restaurant.id %>">
+        <div class="tab-pane text-center mt-2" id="<%= restaurant.id %>">
+<%= cl_image_tag restaurant.photo.key, style: "height: 100px; with: auto; border-radius: 5%" %>
 
+            <%= restaurant.description %> <br>
 
-            <%= restaurant.description %>
-            <%= link_to 'Edit', edit_restaurant_path(restaurant) %>
+        <%= restaurant.city %> <br>
+        <%= restaurant.address %>
+
+      <div class="container">
+
+            <%= link_to 'Edit', edit_restaurant_path(restaurant), class:"btn btn-success" %>
 
             <%= link_to "Delete", restaurant_path(restaurant), data: {turbo_method: :delete}, class:"btn btn-danger"%>
+      </div>
+
 
         </div>
 

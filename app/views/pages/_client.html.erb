@@ -1,8 +1,8 @@
-<h1 class="text-center my-5">Table Finder</h1>
+<h1 class="text-center my-3">Table Finder</h1>
 
 
 
-<div class="row justify-content-center">
+<div class="row justify-content-center mb-3">
   <div class="col-sm-8 my-3">
     <%= form_with url: root_path, method: :get, class: "d-flex" do %>
       <%= text_field_tag :query,
@@ -20,36 +20,45 @@
 
 
 <div class="row justify-content-center" role="tabpanel">
-  <div class="col-8 overflow-scroll" style="height: 400px;" id="restaurantList" role="tablist">
+
+
+  <div class="row row-cols-2 col-8 overflow-scroll" style="height: 400px;" id="restaurantList" role="tablist">
 
     <% @restaurants.each do |restaurant| %>
 
-      <div class="card mb-3" style="max-width: 540px;" data-bs-toggle="list" href="#<%= restaurant.id %>" role="tab">
-        <div class="row g-0">
-          <div class="col-md-4">
-            <%= cl_image_tag restaurant.photo.key, class: 'card-img-top', style: "border-radius: 5%", width: 70 %>
-          </div>
 
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title"><%= restaurant.name %></h5>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="card-category" data-bs-toggle="list" href="#<%= restaurant.id %>" role="tab" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path restaurant.photo.key, height: 200, crop: :fill %>')"
+>
+         <%= restaurant.name %>
+    </div>
+
+
+
+
 
     <% end %>
 
   </div>
-  <div class="col-4 tab-content">
+
+
+  <div class="col-4 tab-content mb-5" style="height: 400px;">
 
     <% @restaurants.each do |restaurant| %>
 
-      <div class="tab-pane" id="<%= restaurant.id %>" role="tabpanel">
-        <%= restaurant.description %>
+      <div class="tab-pane border border-info ps-3" style="height: 400px;" id="<%= restaurant.id %>" role="tabpanel">
 
 
-      <%= link_to 'Reserve', new_restaurant_reservation_path(restaurant) %>
+<div class="container d-flex justify-content-between my-3">
+      <h3><%= restaurant.name %></h3>
+
+      <%= link_to 'Reserve', new_restaurant_reservation_path(restaurant), class: "btn btn-warning" %>
+</div>
+
+        <%= restaurant.description %> <br>
+
+        <%= restaurant.city %> <br>
+        <%= restaurant.address %>
+
 
 
 

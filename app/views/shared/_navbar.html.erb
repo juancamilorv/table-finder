@@ -12,12 +12,12 @@
 
           <% if current_user.hoster %>
                <li>
-            <%= link_to "Restaurants", restaurants_path, class: "mx-5"  %>
+            <%= link_to "Restaurants", restaurants_path, class: "btn btn-info mx-5"  %>
           </li>
             <% else %>
 
           <li>
-            <%= link_to "Reservations", reservations_path, class: "mx-5"  %>
+            <%= link_to "Reservations", reservations_path, class: "btn btn-info mx-5"  %>
           </li>
             <% end %>
 
