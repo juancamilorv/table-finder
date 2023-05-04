@@ -14,8 +14,8 @@ class ReservationsController < ApplicationController
     @reservation.restaurant = @restaurant
     @reservation.user = current_user
 
-    consideration1 = @restaurant.reservations.where(date: @reservation.date).count < 3 # Change limit to 15
-    consideration2 = Reservation.where(date: @reservation.date).count < 5 # Change limit to 20
+    consideration1 = @restaurant.reservations.where(date: @reservation.date).count < 15 # Change limit to 15
+    consideration2 = Reservation.where(date: @reservation.date).count < 20 # Change limit to 20
 
     if consideration1 && consideration2
       @reservation.save
@@ -24,8 +24,6 @@ class ReservationsController < ApplicationController
       redirect_to new_restaurant_reservation_path(@restaurant), notice: "Sorry! There are no more tables available."
     end
   end
-
-
 
 
 
