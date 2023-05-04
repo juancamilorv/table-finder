@@ -1,0 +1,63 @@
+<h1 class="text-center my-5">Table Finder</h1>
+
+
+
+<div class="row justify-content-center">
+  <div class="col-sm-8 my-3">
+    <%= form_with url: root_path, method: :get, class: "d-flex" do %>
+      <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Search by title or city"
+        %>
+      <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
+
+
+
+
+<div class="row justify-content-center" role="tabpanel">
+  <div class="col-8 overflow-scroll" style="height: 400px;" id="restaurantList" role="tablist">
+
+    <% @restaurants.each do |restaurant| %>
+
+      <div class="card mb-3" style="max-width: 540px;" data-bs-toggle="list" href="#<%= restaurant.id %>" role="tab">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <%= cl_image_tag restaurant.photo.key, class: 'card-img-top', style: "border-radius: 5%", width: 70 %>
+          </div>
+
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title"><%= restaurant.name %></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <% end %>
+
+  </div>
+  <div class="col-4 tab-content">
+
+    <% @restaurants.each do |restaurant| %>
+
+      <div class="tab-pane" id="<%= restaurant.id %>" role="tabpanel">
+        <%= restaurant.description %>
+
+
+      <%= link_to 'Reserve', new_restaurant_reservation_path(restaurant) %>
+
+
+
+      </div>
+
+    <% end %>
+
+
+
+  </div>
+</div>

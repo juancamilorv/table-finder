@@ -1,6 +1,10 @@
 <%= simple_form_for @restaurant do |f| %>
 
   <%= f.input :name, label: "Name:" %>
-  <%= f.button :submit, class: "btn btn-primary" %>
+  <%= f.input :description, label: "Description:" %>
+  <%= f.input :address, city: "Address:" %>
+  <%= f.input :city, label: "City:" %>
+  <%= f.input :photo, as: :file %>
 
+  <%= f.button :submit, class: "btn btn-primary" %>
 <% end %>
